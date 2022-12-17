@@ -1,0 +1,9 @@
+﻿  Eveniment.cpp
+C:\Users\uSER\Desktop\Documents\facultate\Proiect\Proiect\Eveniment.cpp(111): warning C4715: 'Eveniment::getDenumire': not all control paths return a value
+C:\Users\uSER\Desktop\Documents\facultate\Proiect\Proiect\Eveniment.cpp(125): warning C4715: 'Eveniment::getLocatie': not all control paths return a value
+C:\Users\uSER\Desktop\Documents\facultate\Proiect\Proiect\Eveniment.cpp(131): warning C4715: 'Eveniment::getLocuriOcupateZona': not all control paths return a value
+C:\Users\uSER\Desktop\Documents\facultate\Proiect\Proiect\Eveniment.cpp(137): warning C4715: 'Eveniment::getLocuriOcupateTotal': not all control paths return a value
+C:\Users\uSER\Desktop\Documents\facultate\Proiect\Proiect\Eveniment.cpp(143): warning C4715: 'Eveniment::getPreturi': not all control paths return a value
+C:\Users\uSER\Desktop\Documents\facultate\Proiect\Proiect\Eveniment.cpp(206): warning C4715: 'Eveniment::esteEvenimentInViitor': not all control paths return a value
+C:\Users\uSER\Desktop\Documents\facultate\Proiect\Proiect\Eveniment.cpp(295): warning C4172: returning address of local variable or temporary: copie
+  Proiect.vcxproj -> C:\Users\uSER\Desktop\Documents\facultate\Proiect\x64\Debug\Proiect.exe
