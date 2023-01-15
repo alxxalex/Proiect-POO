@@ -1,0 +1,82 @@
+l
+Arena
+250
+2
+Loja 1
+Loja 2
+20
+40
+
+l
+Carol
+400
+2
+A
+B
+50
+70
+
+e
+14.12.2025
+21:03
+Meci Fotbal
+2
+30
+100
+Arena
+250
+2
+Loja 1
+Loja 2
+20
+40
+
+e
+10.10.2025
+16:03
+Concert
+2
+50
+150
+Arena
+250
+2
+Loja 1
+Loja 2
+20
+40
+
+b
+Loja 2
+40
+14.12.2025
+21:03
+Meci Fotbal
+2
+30
+100
+Arena
+250
+2
+Loja 1
+Loja 2
+20
+40
+
+b
+Loja 1
+50
+14.12.2025
+21:03
+Meci Fotbal
+2
+30
+100
+Arena
+250
+2
+Loja 1
+Loja 2
+20
+40
+

@@ -9,4 +9,5 @@ public:
 	static bool isValidDate(string data);
 	static bool isValidHour(string s);
 	static bool esteDataInViitor(string dataEv);
+	static string toLowerCase(string);
 };

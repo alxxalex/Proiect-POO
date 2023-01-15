@@ -2,9 +2,11 @@
 #include <string>
 #include "Eveniment.h"
 #include "Utils.h"
+#include "Meniu.h"
 
 using namespace std;
 
+Eveniment** Eveniment::evenimente = new Eveniment*[100];
 int Eveniment::nrEvenimente = 0;
 
 	Eveniment::Eveniment() {
@@ -16,13 +18,13 @@ int Eveniment::nrEvenimente = 0;
 		locuriOcupateTotal = nullptr;
 		preturi = nullptr;
 
-		nrEvenimente++;
 	}
 
 	Eveniment::Eveniment(string data, string ora ,const char* denumire,Locatie locatie,int* preturi) {
 			if (locatie.isValid() && Utils::isValidDate(data) 
 				&& Utils::isValidHour(ora) && Utils::hasOnlyLetters(denumire) && hasValidPrices(locatie,preturi)) {
 				l = new Locatie(locatie);
+
 				this->data = data;
 				this->ora = ora;
 				this->denumire = new char[strlen(denumire) + 1];
@@ -39,7 +41,8 @@ int Eveniment::nrEvenimente = 0;
 				{
 					this->preturi[i] = preturi[i];
 				}
-
+				evenimente[nrEvenimente] = new Eveniment( *this);
+				
 				nrEvenimente++;
 			}
 			else {
@@ -48,9 +51,10 @@ int Eveniment::nrEvenimente = 0;
 		
 	}
 
-	Eveniment::Eveniment(Eveniment& e)
+	Eveniment::Eveniment(const Eveniment& e)
 	{
-		if (e.esteEvenimentValid()) {
+		if (e.l->isValid() && Utils::isValidDate(e.data) && e.locuriOcupateZona != nullptr
+			&& Utils::isValidHour(e.ora) && e.denumire != nullptr && Utils::hasOnlyLetters(e.denumire)) {
 
 				
 			l = new Locatie(*e.l);
@@ -194,6 +198,10 @@ int Eveniment::nrEvenimente = 0;
 		return true;
 	}
 
+	Eveniment** Eveniment::getEvenimente() {
+		return evenimente;
+	}
+
 	int Eveniment::getNrEvenimente() {
 		return nrEvenimente;
 	}
@@ -206,16 +214,17 @@ int Eveniment::nrEvenimente = 0;
 	}
 
 	bool Eveniment::esteEvenimentValid() {
-		if (l->isValid() && Utils::isValidDate(data) && locuriOcupateZona != nullptr 
+		if (l->isValid() && Utils::isValidDate(data) && locuriOcupateZona != nullptr
 			&& Utils::isValidHour(ora) && denumire != nullptr && Utils::hasOnlyLetters(denumire)) {
 			return true;
 		}
 		return false;
 	}
 
-	Eveniment& Eveniment::operator=( Eveniment& e)
+	Eveniment& Eveniment::operator=(const Eveniment& e)
 	{
-		if (e.esteEvenimentValid()) {
+		if (e.l->isValid() && Utils::isValidDate(e.data) && e.locuriOcupateZona != nullptr
+			&& Utils::isValidHour(e.ora) && e.denumire != nullptr && Utils::hasOnlyLetters(e.denumire)) {
 			
 			delete[] denumire;
 
@@ -235,10 +244,12 @@ int Eveniment::nrEvenimente = 0;
 			denumire = new char[strlen(e.denumire) + 1];
 			strcpy_s(denumire, strlen(e.denumire) + 1, e.denumire);
 
+			
+
 			locuriOcupateZona = new int[l->getNrZone()+1];
 			for (int i = 0; i < l->getNrZone(); i++)
 			{
-				locuriOcupateZona[i] = e.getLocuriOcupateZona()[i];
+				locuriOcupateZona[i] = e.locuriOcupateZona[i];
 			}
 
 			locuriOcupateTotal = new int[l->nrLocuriRepartizate(l->getNrZone(),l->getNrLocuriZona()) + 1];
@@ -250,7 +261,7 @@ int Eveniment::nrEvenimente = 0;
 			preturi = new int[l->getNrZone() + 1];
 			for (int i = 0; i < l->getNrZone(); i++)
 			{
-				preturi[i] = e.getPreturi()[i];
+				preturi[i] = e.preturi[i];
 			}
 		}
 		else {
@@ -275,6 +286,7 @@ int Eveniment::nrEvenimente = 0;
 				ora[1] = '0';
 			}
 		}
+		
 		return *this;
 	}
 
@@ -290,6 +302,13 @@ int Eveniment::nrEvenimente = 0;
 			else {
 				ora[0] = '0';
 				ora[1] = '0';
+			}
+			for (int i = 0; i < Meniu::evenimenteDeSalvat->size(); i++)
+			{
+				if (Meniu::evenimenteDeSalvat->at(i).getData() == data) {
+					Meniu::evenimenteDeSalvat->at(i).setOra(ora) ;
+					cout << Meniu::evenimenteDeSalvat->at(i);
+				}
 			}
 		}
 		return copie;
@@ -321,6 +340,7 @@ int Eveniment::nrEvenimente = 0;
 		if (e.hasValidData()) {
 			cout << "Denumirea evenimentului: ";
 			string denumire;
+			in >> ws;
 			getline(in, denumire);
 			if (Utils::hasOnlyLetters(denumire)) {
 				cout << "Data evenimentului(dd.mm.yyyy): ";

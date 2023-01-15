@@ -5,6 +5,7 @@
 #include "Bilet.h"
 using namespace std;
 
+Bilet** Bilet::bilete = new Bilet*[100];
 int Bilet::nrBilete = 0;
 
 	Bilet::Bilet() : id(-1) {
@@ -12,8 +13,6 @@ int Bilet::nrBilete = 0;
 		loc = -1;
 		validat = false;
 		pret = -1;
-
-		nrBilete++;
 	}
 
 	Bilet::Bilet(string tipBilet,int loc,Eveniment& e) : id(creazaId()) {
@@ -28,12 +27,12 @@ int Bilet::nrBilete = 0;
 		else {
 			throw exception("Date invalide ale biletului");
 		}
-
+		bilete[nrBilete] = new Bilet(*this);
 		nrBilete++;
 		
 	}
 
-	Bilet::Bilet(Bilet& b) :id(creazaId()) {
+	Bilet::Bilet(const Bilet& b) :id(creazaId()) {
 		tipBilet = b.tipBilet;
 		loc = b.loc;
 		validat = b.validat;
@@ -85,6 +84,14 @@ int Bilet::nrBilete = 0;
 		else {
 			cout << "Eveniment invalid" << endl;
 		}
+	};
+
+	int Bilet::getNrBilete() {
+		return nrBilete;
+	};
+
+	Bilet** Bilet::getBilete() {
+		return bilete;
 	};
 
 	void Bilet::setTipBilet(string tip) {

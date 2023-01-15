@@ -130,5 +130,14 @@ using namespace std;
 			return false;
 		}
 
-	}
+	 }
+
+	  string Utils::toLowerCase(string cuvant) {
+		  string cuvantLower;
+		  for (int i = 0; i < cuvant.length(); i++)
+		  {
+			  cuvantLower += tolower(cuvant[i]);
+		  }
+		  return cuvantLower;
+	  }
 

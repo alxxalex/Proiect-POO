@@ -12,11 +12,12 @@ private:
 	int* locuriOcupateZona;//vector pentru a verifica cate locuri mai sunt in fiecare zona
 	int* locuriOcupateTotal;// vector pentru a verifica daca doua bilete sunt pe acelasi loc
 	int* preturi;
+	static Eveniment** evenimente;
 	static int nrEvenimente ;
 public:
 	Eveniment();
 	Eveniment(string data, string ora,const char* denumire,Locatie locatie,int* preturi);
-	Eveniment(Eveniment& e);
+	Eveniment(const Eveniment& e);
 	~Eveniment();
 
 	char* getDenumire();
@@ -26,6 +27,7 @@ public:
 	int* getLocuriOcupateZona();
 	int* getLocuriOcupateTotal();
 	int* getPreturi();
+	static Eveniment** getEvenimente();
 	static int getNrEvenimente();
 
 	void setDenumire(const char* denumire);
@@ -37,10 +39,10 @@ public:
 	bool hasValidPrices(Locatie locatie, int* preturi);
 	void prelucrarePreturi(istream& in);
 	bool hasValidData();
-	bool esteEvenimentInViitor();
-	bool esteEvenimentValid();
+	bool virtual esteEvenimentInViitor();
+	bool virtual esteEvenimentValid();
 
-	Eveniment& operator=( Eveniment& e);
+	Eveniment& operator=(const Eveniment& e);
 	Eveniment& operator++();
 	Eveniment& operator++(int a);
 	explicit operator string();
