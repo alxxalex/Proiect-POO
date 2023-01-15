@@ -9,6 +9,8 @@ private:
 	int nrZone;
 	string* zone;
 	int* nrLocuriZona;
+	static Locatie** locatii ;
+	static int nrLocatii;
 
 public:
 	Locatie();
@@ -22,14 +24,16 @@ public:
 	int getNrZone();
 	string* getZone();
 	int* getNrLocuriZona();
+	static Locatie** getLocatii();
+	static int getNrLocatii();
 
 	void setDetaliiZone(int nrZone, string* zone, int* nrLocuriZona);
 
-	void prelucrareZone(istream& in, int nr);
-	void prelucrareNrLocuriZona(istream& in, int nr);
+	void virtual prelucrareZone(istream& in, int nr);
+	void virtual prelucrareNrLocuriZona(istream& in, int nr);
 	bool isValid();
 	int nrLocuriRepartizate(int nrZone,int* nrLocuriZona);
-	static Locatie ceaMaiMareLocatie(Locatie* locatii, int nrLocatii);
+	static Locatie ceaMaiMareLocatie(Locatie** locatii, int nrLocatii);
 
 	Locatie& operator=(const Locatie& l);
 	string& operator[](int index);

@@ -131,12 +131,19 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Eveniment.cpp" />
     <ClCompile Include="Bilet.cpp" />
+    <ClCompile Include="Meniu.cpp" />
+    <ClCompile Include="PrelucrareFisierBinar.cpp" />
+    <ClCompile Include="PrelucrareFisierText.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bilet.h" />
     <ClInclude Include="Eveniment.h" />
     <ClInclude Include="Locatie.h" />
+    <ClInclude Include="Meniu.h" />
+    <ClInclude Include="PrelucrareFisier.h" />
+    <ClInclude Include="PrelucrareFisierBinar.h" />
+    <ClInclude Include="PrelucrareFisierText.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

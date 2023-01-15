@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "Locatie.h"
 #include "Eveniment.h"
@@ -12,11 +13,12 @@ private:
 	Eveniment eveniment;
 	int pret ;
 	static int nrBilete;
+	static Bilet** bilete;
 	
 public:
 	Bilet();
 	Bilet(string tipBilet, int loc,Eveniment& e);
-	Bilet( Bilet& b);
+	Bilet(const Bilet& b);
 
 	int getPret();
 	string getTipBilet();
@@ -24,6 +26,8 @@ public:
 	int getLoc();
 	bool getValidat();
 	Eveniment getEveniment();
+	static int getNrBilete();
+	static Bilet** getBilete();
 
 	void setTipBilet(string tip);
 	void setLoc(int loc);
@@ -31,9 +35,9 @@ public:
 
 	void seteazaPret(string tipBilet);
 	void valideaza();
-	bool esteTipBiletValid(string tipBilet,Eveniment e);
+	bool virtual esteTipBiletValid(string tipBilet,Eveniment e);
 	bool locDisponibil(int loc, string tipBilet, Eveniment& e);
-	bool esteLocValid(int loc,string tipBilet,Eveniment& e);
+	bool virtual esteLocValid(int loc,string tipBilet,Eveniment& e);
 	long creazaId();
 
 	bool operator!();

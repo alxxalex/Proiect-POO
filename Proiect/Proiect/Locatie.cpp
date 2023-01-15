@@ -4,6 +4,9 @@
 #include "Utils.h"
 using namespace std;
 
+	Locatie** Locatie::locatii = new Locatie*[100];
+	
+	int Locatie::nrLocatii = 0;
 
 	Locatie :: Locatie() : denumire(""),nrMaximLocuri(0) {
 		nrZone = 0;
@@ -33,6 +36,9 @@ using namespace std;
 		else {
 			throw exception("Date invalide pentru locatia respectiva");
 		}
+		
+		locatii[nrLocatii] = new Locatie(*this);
+		nrLocatii++;
 	}
 
 	Locatie::Locatie(const Locatie& l) : denumire(l.denumire), nrMaximLocuri(l.nrMaximLocuri) {
@@ -92,6 +98,16 @@ using namespace std;
 			return copy;
 		}
 		return nullptr;
+	}
+
+	Locatie** Locatie::getLocatii()
+	{
+		return locatii;
+	}
+
+	int Locatie::getNrLocatii()
+	{
+		return nrLocatii;
 	}
 
 	void Locatie::setDetaliiZone(int nrZone,string* zone,int* nrLocuriZona) {
@@ -162,7 +178,7 @@ using namespace std;
 				}
 			}
 		}
-	};
+	}
 
 	bool Locatie::isValid() {
 		if (denumire == "" || nrMaximLocuri == 0 || nrZone == 0) {
@@ -186,17 +202,17 @@ using namespace std;
 		}
 	};
 
-	 Locatie Locatie::ceaMaiMareLocatie(Locatie* locatii,int nrLocatii) {
+	 Locatie Locatie::ceaMaiMareLocatie(Locatie** locatii,int nrLocatii) {
 		 int max = 0,index = 0;
 
 		 for (int i = 0; i < nrLocatii; i++)
 		 {
-			 if (locatii[i].nrMaximLocuri > max) {
-				 max = locatii[i].nrMaximLocuri;
+			 if (locatii[i]->nrMaximLocuri > max) {
+				 max = locatii[i]->nrMaximLocuri;
 				 index = i;
 			 }
 		 }
-		 return locatii[index];
+		 return *locatii[index];
 	}
 	
 
